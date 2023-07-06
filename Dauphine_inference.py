@@ -175,6 +175,12 @@ def complete_case_estimator(x):
         A vector with missing values.
     """
     # ------------TO DO ------------
+    mean_cc = np.nanmean(x)
+    return mean_cc
+
+    # Other option
+    # ind = np.isnan(x)
+    # return np.mean(x[~ind])
 
 
 def single_imputation_estimator(x):
@@ -188,6 +194,11 @@ def single_imputation_estimator(x):
     """
     # ------------TO DO ------------
     # Hint: use skearn's SimpleImputer
+    imputer = SimpleImputer(strategy='mean')
+    x = x[:, None]
+    imputer.fit(x)
+    x_hat = imputer.transform(x)
+    return np.mean(x_hat)
 
 
 def ipw_estimator(X):
